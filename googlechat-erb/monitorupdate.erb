@@ -1,0 +1,32 @@
+{
+  "cards": {
+    "header": {
+      "title": "[<%= orgName %>] 監視ルールが更新されました"
+    },
+    "sections": [
+      {
+        "widgets": [
+          {
+            "textParagraph": {
+              "text": "監視ルール名: <a href=\"<%= mackerel_url %>/orgs/<%= orgName %>/monitors/<%= monitor['id'] %>\"><%= monitor['name'] %></a>
+変更者: <%= user['screenName'] %>
+ターゲット: <%
+if monitor['type'] == 'host' %>ホストメトリック (<%= monitor['metric'] %>)<%
+elsif monitor['type'] == 'service' %>サービスメトリック (<%= monitor['metric'] %>)<%
+elsif monitor['type'] == 'external' %>外形監視 (<a href=\"<%= monitor['url'] %>\"><%= monitor['url'] %></a>)<%
+else %><%= monitor['type'] %><% end %>"
+            }
+          }
+        ]
+      }<% if monitor['memo'] %>, {
+        "widgets": [
+          {
+            "textParagraph": {
+              "text": "<%= monitor['memo'] %>"
+            }
+          }
+        ]
+      }
+    <% end %>]
+  }
+}
