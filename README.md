@@ -19,5 +19,7 @@ MackerelのWebhookを受け取ってほかの形式のWebhookなどに引き渡�
 GOOGLECHAT_WEBHOOK=https://chat.googleapis.com/v1/spaces/…
 ```
 
+![Google Chatでの通知表示](./googlechat.png)
+
 ## ライセンス
 まだ決めてないがOSS。ApacheかMITにしそう
