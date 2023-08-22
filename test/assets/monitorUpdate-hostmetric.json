@@ -1,0 +1,1 @@
+{"orgName":"ORG_NAME","event":"monitorUpdate","monitor":{"critical":2,"isMute":false,"excludeScopes":[],"type":"host","operator":">","duration":1,"maxCheckAttempts":1,"metric":"custom.METRIC_NAME","name":"MONITORN_NAME","warning":0,"scopes":[],"id":"MONITOR_ID"},"user":{"id":"USER_ID","screenName":"CHANGER@MAILADDRESS"},"imageUrl":null}
