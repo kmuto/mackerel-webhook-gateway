@@ -1,0 +1,52 @@
+{
+  "definitions": {
+    "imageUrl": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "title": "グラフ画像URL",
+      "examples": [
+        null,
+        "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://mackerel.io/json/sample.json",
+  "type": "object",
+  "default": {},
+  "title": "ルート",
+  "required": [
+    "event",
+    "message"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "event": {
+      "type": "string",
+      "title": "イベントの種類",
+      "enum": [
+        "sample"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "title": "メッセージ文字列",
+      "enum": [
+        "Sample Notification from Mackerel"
+      ]
+    },
+    "imageUrl": {
+      "$ref": "#/definitions/imageUrl"
+    }
+  },
+  "examples": [
+    {
+      "event": "sample",
+      "message": "Sample Notification from Mackerel",
+      "imageUrl": null
+    }
+  ]
+}

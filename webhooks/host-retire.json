@@ -1,0 +1,253 @@
+{
+  "definitions": {
+    "imageUrl": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "title": "グラフ画像URL",
+      "examples": [
+        null,
+        "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
+      ]
+    },
+    "memo": {
+      "type": "string",
+      "title": "メモ",
+      "examples": [
+        "MY_MEMO",
+        "MY_MEMO\nMY_MEMO2\nMY_MEMO3"
+      ]
+    },
+    "user": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "default": null,
+      "title": "ユーザー情報",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ユーザーID",
+          "examples": [
+            "USER_ID"
+          ]
+        },
+        "screenName": {
+          "type": "string",
+          "title": "表示名",
+          "examples": [
+            "MY_NAME",
+            "MY_EMAIL_ADDRESS"
+          ]
+        }
+      },
+      "examples": [
+        null
+      ]
+    },
+    "roles": {
+      "type": "array",
+      "default": [],
+      "title": "ロール情報",
+      "items": {
+        "type": "object",
+        "title": "ロール詳細情報",
+        "required": [
+          "fullname",
+          "serviceName",
+          "roleName",
+          "serviceUrl",
+          "roleUrl"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "fullname": {
+            "type": "string",
+            "title": "サービスとロールの結合名",
+            "examples": [
+              "MY_SERVICE: MY_ROLE"
+            ]
+          },
+          "serviceName": {
+            "type": "string",
+            "title": "サービス名",
+            "examples": [
+              "MY_SERVICE"
+            ]
+          },
+          "roleName": {
+            "type": "string",
+            "title": "ロール名",
+            "examples": [
+              "MY_ROLE"
+            ]
+          },
+          "serviceUrl": {
+            "type": "string",
+            "title": "サービスURL",
+            "format": "uri",
+            "examples": [
+              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+            ]
+          },
+          "roleUrl": {
+            "type": "string",
+            "title": "ロールURL",
+            "format": "uri",
+            "examples": [
+              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
+            ]
+          }
+        },
+        "examples": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "roleName": "MY_ROLE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
+          }
+        ]
+      },
+      "examples": [
+        [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "roleName": "MY_ROLE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
+          }
+        ]
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://mackerel.io/json/host-retire.json",
+  "type": "object",
+  "default": {},
+  "title": "ルート",
+  "required": [
+    "orgName",
+    "event",
+    "host",
+    "user"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "orgName": {
+      "type": "string",
+      "title": "オーガニゼーション名",
+      "examples": [
+        "MY_ORG"
+      ]
+    },
+    "event": {
+      "type": "string",
+      "title": "イベントの種類",
+      "enum": [
+        "hostRetire"
+      ]
+    },
+    "host": {
+      "type": "object",
+      "default": {},
+      "title": "ホスト情報",
+      "required": [
+        "name",
+        "isRetired",
+        "id",
+        "url",
+        "status",
+        "roles"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "ホスト名",
+          "examples": [
+            "MY_HOST"
+          ]
+        },
+        "memo": {
+          "$ref": "#/definitions/memo"
+        },
+        "isRetired": {
+          "type": "boolean",
+          "default": false,
+          "title": "退役済みかどうか",
+          "examples": [
+            false
+          ]
+        },
+        "id": {
+          "type": "string",
+          "title": "ホストID",
+          "examples": [
+            "HOST_ID"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "title": "ホストURL",
+          "examples": [
+            "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "title": "ステータス",
+          "enum": [
+            "working",
+            "standby",
+            "maintenance",
+            "poweroff"
+          ]
+        },
+        "roles": {
+          "$ref": "#/definitions/roles"
+        }
+      },
+      "examples": [
+        {
+          "name": "MY_HOST",
+          "memo": "",
+          "isRetired": false,
+          "id": "HOST_ID",
+          "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID",
+          "status": "working",
+          "roles": []
+        }
+      ]
+    },
+    "user": {
+      "$ref": "#/definitions/user"
+    },
+    "imageUrl": {
+      "$ref": "#/definitions/imageUrl"
+    }
+  },
+  "examples": [
+    {
+      "orgName": "MY_ORG",
+      "event": "hostRegister",
+      "host": {
+        "name": "MY_HOST",
+        "memo": "",
+        "isRetired": false,
+        "id": "HOST_ID",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID",
+        "status": "working",
+        "roles": []
+      },
+      "user": null,
+      "imageUrl": null
+    }
+  ]
+}
