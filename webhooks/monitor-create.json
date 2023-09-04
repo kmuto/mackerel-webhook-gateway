@@ -1,289 +1,335 @@
 {
+  "$id": "https://mackerel.io/json/monitor-create.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "default": {},
   "definitions": {
     "imageUrl": {
-      "type": [
-        "null",
-        "string"
-      ],
       "default": null,
-      "title": "グラフ画像URL",
       "examples": [
         null,
         "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
+      ],
+      "title": "グラフ画像URL",
+      "type": [
+        "null",
+        "string"
       ]
     },
     "memo": {
-      "type": "string",
-      "title": "メモ",
       "examples": [
         "MY_MEMO",
         "MY_MEMO\nMY_MEMO2\nMY_MEMO3"
-      ]
+      ],
+      "title": "メモ",
+      "type": "string"
     },
     "user": {
-      "type": [
-        "null",
-        "object"
-      ],
-      "default": null,
-      "title": "ユーザー情報",
       "additionalProperties": false,
+      "default": null,
+      "examples": [
+        null
+      ],
       "properties": {
         "id": {
-          "type": "string",
-          "title": "ユーザーID",
           "examples": [
             "USER_ID"
-          ]
+          ],
+          "title": "ユーザーID",
+          "type": "string"
         },
         "screenName": {
-          "type": "string",
-          "title": "表示名",
           "examples": [
             "MY_NAME",
             "MY_EMAIL_ADDRESS"
-          ]
+          ],
+          "title": "表示名",
+          "type": "string"
         }
       },
-      "examples": [
-        null
+      "title": "ユーザー情報",
+      "type": [
+        "null",
+        "object"
       ]
     }
   },
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://mackerel.io/json/monitor-create.json",
-  "type": "object",
-  "default": {},
-  "title": "ルート",
-  "required": [
-    "orgName",
-    "event",
-    "monitor",
-    "user"
-  ],
-  "additionalProperties": false,
-  "properties": {
-    "orgName": {
-      "type": "string",
-      "title": "オーガニゼーション名",
-      "examples": [
-        "MY_ORG"
-      ]
+  "examples": [
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "critical": 50,
+        "duration": 3,
+        "excludeScopes": [],
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "maxCheckAttempts": 1,
+        "memo": "MY_MEMO",
+        "metric": "MY_METRIC",
+        "name": "MY_MONITOR_HOST",
+        "notificationInterval": 60,
+        "operator": ">",
+        "scopes": [
+          "MY_SERVICE"
+        ],
+        "type": "host",
+        "warning": 10
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
     },
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "critical": 2,
+        "duration": 1,
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "maxCheckAttempts": 1,
+        "memo": "MEMO1\nMEMO2",
+        "metric": "MY_METRIC",
+        "missingDurationCritical": 120,
+        "missingDurationWarning": 60,
+        "name": "MY_SERVICE - MY_METRIC",
+        "notificationInterval": 60,
+        "operator": ">",
+        "service": "MY_SERVICE",
+        "type": "service",
+        "warning": 1
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    },
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "critical": 5,
+        "expression": "host(HOST_ID, loadavg1)",
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "memo": "",
+        "name": "MY_MONITOR_EXPRESSION",
+        "notificationInterval": 60,
+        "operator": ">",
+        "type": "expression",
+        "warning": 1
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    },
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "criticalSensitivity": "insensitive",
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "maxCheckAttempts": 3,
+        "memo": "",
+        "name": "MY_MONITOR_ANOMALY",
+        "notificationInterval": 60,
+        "scopes": [
+          "MY_SERVICE: MY_ROLE"
+        ],
+        "type": "anomalyDetection",
+        "warningSensitivity": "sensitive"
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    },
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "alertStatusOnGone": "CRITICAL",
+        "excludeScopes": [
+          "MY_SERVICE: MY_EXCLUDE_ROLE"
+        ],
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "name": "MY_MONITIOR_CONNECTIVITY",
+        "notificationInterval": 56,
+        "scopes": [
+          "MY_SERVICE"
+        ],
+        "type": "connectivity"
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    },
+    {
+      "event": "monitorCreate",
+      "imageUrl": null,
+      "monitor": {
+        "certificationExpirationCritical": 30,
+        "certificationExpirationWarning": 60,
+        "containsString": "HELLO",
+        "followRedirect": true,
+        "headers": [
+          {
+            "name": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "id": "MONITOR_ID",
+        "isMute": false,
+        "maxCheckAttempts": 3,
+        "method": "GET",
+        "name": "MY_MONITOR",
+        "notificationInterval": 60,
+        "requestBody": "{\"message\": \"example\"}",
+        "responseTimeCritical": 1000,
+        "responseTimeDuration": 3,
+        "responseTimeWarning": 500,
+        "service": "testservice",
+        "skipCertificateVerification": true,
+        "type": "external",
+        "url": "MY_URL"
+      },
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    }
+  ],
+  "properties": {
     "event": {
-      "type": "string",
-      "title": "イベントの種類",
       "enum": [
         "monitorCreate"
-      ]
+      ],
+      "title": "イベントの種類",
+      "type": "string"
+    },
+    "imageUrl": {
+      "$ref": "#/definitions/imageUrl"
     },
     "monitor": {
-      "type": "object",
-      "default": {},
-      "title": "監視ルール",
-      "required": [
-        "isMute",
-        "type",
-        "notificationInterval",
-        "name",
-        "id"
-      ],
       "additionalProperties": false,
+      "default": {},
+      "examples": [
+        {
+          "critical": 50,
+          "duration": 3,
+          "excludeScopes": [],
+          "id": "MONITOR_ID",
+          "isMute": false,
+          "maxCheckAttempts": 1,
+          "memo": "MY_MEMO",
+          "metric": "cpu%",
+          "name": "CPU %",
+          "notificationInterval": 60,
+          "operator": ">",
+          "scopes": [
+            "MY_SERVICE"
+          ],
+          "type": "host",
+          "warning": 10
+        }
+      ],
       "properties": {
-        "critical": {
-          "type": "integer",
-          "title": "Critical条件閾値(ホスト・サービス・式)",
-          "examples": [
-            50
-          ]
-        },
-        "isMute": {
-          "type": "boolean",
-          "default": false,
-          "title": "監視のミュート",
-          "examples": [
-            false
-          ]
-        },
-        "excludeScopes": {
-          "type": "array",
-          "default": [],
-          "title": "絞り込み除外条件(ホスト)",
-          "items": {
-            "type": "string",
-            "title": "絞り込み除外対象サービス",
-            "examples": [
-              "MY_SERVICE",
-              "MY_SERVICE: MY_ROLE"
-            ]
-          },
-          "examples": [
-            []
-          ]
-        },
-        "memo": {
-          "$ref": "#/definitions/memo"
-        },
-        "type": {
-          "type": "string",
-          "default": "",
-          "title": "監視ルールの対象形式",
+        "alertStatusOnGone": {
           "enum": [
-            "host",
-            "external",
-            "expression",
-            "anomalyDetection",
-            "service",
-            "connectivity"
-          ]
+            "CRITICAL",
+            "WARNING"
+          ],
+          "title": "アラート発生時のアラートステータス(connectivity)",
+          "type": "string"
         },
-        "notificationInterval": {
-          "type": "integer",
-          "title": "通知の再送間隔",
+        "certificationExpirationCritical": {
           "examples": [
             60
-          ]
+          ],
+          "title": "証明書有効期限Critical条件(外形監視)",
+          "type": "integer"
         },
-        "operator": {
-          "type": "string",
-          "title": "演算子(ホスト・サービス・式)",
+        "certificationExpirationWarning": {
+          "examples": [
+            30
+          ],
+          "title": "証明書有効期限Warning条件(外形監視)",
+          "type": "integer"
+        },
+        "containsString": {
+          "examples": [
+            "RESPONSE_STRING"
+          ],
+          "title": "レスポンスボディに含まれているべき文字列(外形監視)",
+          "type": "string"
+        },
+        "critical": {
+          "examples": [
+            50
+          ],
+          "title": "Critical条件閾値(ホスト・サービス・式)",
+          "type": "integer"
+        },
+        "criticalSensitivity": {
           "enum": [
-            ">",
-            "<"
-          ]
+            "sensitive",
+            "normal",
+            "insensitive"
+          ],
+          "title": "センシティビティCritical条件(異常検知)",
+          "type": "string"
         },
         "duration": {
-          "type": "integer",
-          "title": "平均値監視",
           "examples": [
             1
-          ]
+          ],
+          "title": "平均値監視",
+          "type": "integer"
         },
-        "maxCheckAttempts": {
-          "type": "integer",
-          "title": "アラートまでの最大試行回数",
-          "examples": [
-            3
-          ]
-        },
-        "metric": {
-          "type": "string",
-          "title": "メトリック名(ホスト・サービス)",
-          "examples": [
-            "cpu%",
-            "custom.linux.users.users"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "title": "監視ルール名",
-          "examples": [
-            "MY_MONITOR"
-          ]
-        },
-        "warning": {
-          "type": "integer",
-          "title": "Warning条件閾値(ホスト・サービス・式)",
-          "examples": [
-            10
-          ]
-        },
-        "scopes": {
-          "type": "array",
+        "excludeScopes": {
           "default": [],
-          "title": "絞り込み条件(ホスト)",
+          "examples": [
+            []
+          ],
           "items": {
-            "type": "string",
-            "title": "絞り込み対象サービス",
             "examples": [
               "MY_SERVICE",
               "MY_SERVICE: MY_ROLE"
-            ]
+            ],
+            "title": "絞り込み除外対象サービス",
+            "type": "string"
           },
-          "examples": [
-            []
-          ]
+          "title": "絞り込み除外条件(ホスト)",
+          "type": "array"
         },
-        "id": {
-          "type": "string",
-          "title": "監視ルールID",
+        "expression": {
           "examples": [
-            "MONITOR_ID"
-          ]
+            "host(HOST_ID, loadavg5)"
+          ],
+          "title": "式の文字列(式)",
+          "type": "string"
         },
-        "url": {
-          "type": "string",
-          "format": "uri",
-          "title": "監視対象URL(外形監視)",
+        "followRedirect": {
+          "default": true,
           "examples": [
-            "https://example.jp"
-          ]
-        },
-        "method": {
-          "type": "string",
-          "title": "HTTPメソッド(外形監視)",
-          "enum": [
-            "GET",
-            "POST",
-            "PUT",
-            "DELETE"
-          ]
-        },
-        "responseTimeWarning": {
-          "type": "integer",
-          "title": "レスポンスタイム閾値Warning条件(外形監視)",
-          "examples": [
-            1000
-          ]
-        },
-        "responseTimeCritical": {
-          "type": "integer",
-          "title": "レスポンスタイム閾値Critical条件(外形監視)",
-          "examples": [
-            5000
-          ]
-        },
-        "responseTimeDuration": {
-          "type": "integer",
-          "title": "レスポンスタイム平均値監視数(外形監視)",
-          "examples": [
-            3
-          ]
+            false
+          ],
+          "title": "レスポンスヘッダに従ってリダイレクト(外形監視)",
+          "type": "boolean"
         },
         "headers": {
-          "type": "array",
-          "title": "リクエストヘッダ(外形監視)",
-          "items": {
-            "type": "object",
-            "title": "ヘッダ情報",
-            "required": [
-              "name",
-              "value"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "name": {
-                "type": "string",
-                "title": "ヘッダ名",
-                "examples": [
-                  "Cache-Control"
-                ]
-              },
-              "value": {
-                "type": "string",
-                "title": "ヘッダ値",
-                "examples": [
-                  "no-cache"
-                ]
-              }
-            },
-            "examples": [
-              {
-                "name": "Cache-Control",
-                "value": "no-cache"
-              }
-            ]
-          },
           "example": [
             [
               {
@@ -291,162 +337,244 @@
                 "value": "no-cache"
               }
             ]
-          ]
+          ],
+          "items": {
+            "additionalProperties": false,
+            "examples": [
+              {
+                "name": "Cache-Control",
+                "value": "no-cache"
+              }
+            ],
+            "properties": {
+              "name": {
+                "examples": [
+                  "Cache-Control"
+                ],
+                "title": "ヘッダ名",
+                "type": "string"
+              },
+              "value": {
+                "examples": [
+                  "no-cache"
+                ],
+                "title": "ヘッダ値",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "value"
+            ],
+            "title": "ヘッダ情報",
+            "type": "object"
+          },
+          "title": "リクエストヘッダ(外形監視)",
+          "type": "array"
         },
-        "requestBody": {
-          "type": "string",
-          "title": "リクエストメッセージボディ(外形監視)",
+        "id": {
           "examples": [
-            "{\"message\": \"Example\"}"
-          ]
+            "MONITOR_ID"
+          ],
+          "title": "監視ルールID",
+          "type": "string"
         },
-        "containsString": {
-          "type": "string",
-          "title": "レスポンスボディに含まれているべき文字列(外形監視)",
-          "examples": [
-            "RESPONSE_STRING"
-          ]
-        },
-        "certificationExpirationWarning": {
-          "type": "integer",
-          "title": "証明書有効期限Warning条件(外形監視)",
-          "examples": [
-            30
-          ]
-        },
-        "certificationExpirationCritical": {
-          "type": "integer",
-          "title": "証明書有効期限Critical条件(外形監視)",
-          "examples": [
-            60
-          ]
-        },
-        "followRedirect": {
-          "type": "boolean",
-          "default": true,
-          "title": "レスポンスヘッダに従ってリダイレクト(外形監視)",
-          "examples": [
-            false
-          ]
-        },
-        "skipCertificateVerification": {
-          "type": "boolean",
+        "isMute": {
           "default": false,
-          "title": "証明書の確認を行わない(外形監視)",
           "examples": [
             false
-          ]
+          ],
+          "title": "監視のミュート",
+          "type": "boolean"
         },
-        "missingDurationWarning": {
-          "type": "integer",
-          "title": "途切れ監視Warning条件(サービス)",
+        "maxCheckAttempts": {
           "examples": [
-            60
-          ]
+            3
+          ],
+          "title": "アラートまでの最大試行回数",
+          "type": "integer"
+        },
+        "memo": {
+          "$ref": "#/definitions/memo"
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+          ],
+          "title": "HTTPメソッド(外形監視)",
+          "type": "string"
+        },
+        "metric": {
+          "examples": [
+            "cpu%",
+            "custom.linux.users.users"
+          ],
+          "title": "メトリック名(ホスト・サービス)",
+          "type": "string"
         },
         "missingDurationCritical": {
-          "type": "integer",
-          "title": "途切れ監視Critical条件(サービス)",
           "examples": [
             60
-          ]
+          ],
+          "title": "途切れ監視Critical条件(サービス)",
+          "type": "integer"
+        },
+        "missingDurationWarning": {
+          "examples": [
+            60
+          ],
+          "title": "途切れ監視Warning条件(サービス)",
+          "type": "integer"
+        },
+        "name": {
+          "examples": [
+            "MY_MONITOR"
+          ],
+          "title": "監視ルール名",
+          "type": "string"
+        },
+        "notificationInterval": {
+          "examples": [
+            60
+          ],
+          "title": "通知の再送間隔",
+          "type": "integer"
+        },
+        "operator": {
+          "enum": [
+            ">",
+            "<"
+          ],
+          "title": "演算子(ホスト・サービス・式)",
+          "type": "string"
+        },
+        "requestBody": {
+          "examples": [
+            "{\"message\": \"Example\"}"
+          ],
+          "title": "リクエストメッセージボディ(外形監視)",
+          "type": "string"
+        },
+        "responseTimeCritical": {
+          "examples": [
+            5000
+          ],
+          "title": "レスポンスタイム閾値Critical条件(外形監視)",
+          "type": "integer"
+        },
+        "responseTimeDuration": {
+          "examples": [
+            3
+          ],
+          "title": "レスポンスタイム平均値監視数(外形監視)",
+          "type": "integer"
+        },
+        "responseTimeWarning": {
+          "examples": [
+            1000
+          ],
+          "title": "レスポンスタイム閾値Warning条件(外形監視)",
+          "type": "integer"
+        },
+        "scopes": {
+          "default": [],
+          "examples": [
+            []
+          ],
+          "items": {
+            "examples": [
+              "MY_SERVICE",
+              "MY_SERVICE: MY_ROLE"
+            ],
+            "title": "絞り込み対象サービス",
+            "type": "string"
+          },
+          "title": "絞り込み条件(ホスト)",
+          "type": "array"
         },
         "service": {
-          "type": "string",
-          "title": "対象サービス名(サービス)、サービスメトリック書き出しサービス名(外形監視)",
           "examples": [
-            "MY_SERVICE"
-          ]
-        },
-        "expression": {
-          "type": "string",
-          "title": "式の文字列(式)",
-          "examples": [
-            "host(HOST_ID, loadavg5)"
-          ]
-        },
-        "warningSensitivity": {
-          "type": "string",
-          "title": "センシティビティWarning条件(異常検知)",
-          "enum": [
-            "sensitive",
-            "normal",
-            "insensitive"
-          ]
-        },
-        "criticalSensitivity": {
-          "type": "string",
-          "title": "センシティビティCritical条件(異常検知)",
-          "enum": [
-            "sensitive",
-            "normal",
-            "insensitive"
-          ]
-        },
-        "alertStatusOnGone": {
-          "type": "string",
-          "title": "アラート発生時のアラートステータス(connectivity)",
-          "enum": [
-            "CRITICAL",
-            "WARNING"
-          ]
-        }
-      },
-      "examples": [
-        {
-          "critical": 50,
-          "isMute": false,
-          "excludeScopes": [],
-          "memo": "MY_MEMO",
-          "type": "host",
-          "notificationInterval": 60,
-          "operator": ">",
-          "duration": 3,
-          "maxCheckAttempts": 1,
-          "metric": "cpu%",
-          "name": "CPU %",
-          "warning": 10,
-          "scopes": [
             "MY_SERVICE"
           ],
-          "id": "MONITOR_ID"
+          "title": "対象サービス名(サービス)、サービスメトリック書き出しサービス名(外形監視)",
+          "type": "string"
+        },
+        "skipCertificateVerification": {
+          "default": false,
+          "examples": [
+            false
+          ],
+          "title": "証明書の確認を行わない(外形監視)",
+          "type": "boolean"
+        },
+        "type": {
+          "default": "",
+          "enum": [
+            "host",
+            "external",
+            "expression",
+            "anomalyDetection",
+            "service",
+            "connectivity"
+          ],
+          "title": "監視ルールの対象形式",
+          "type": "string"
+        },
+        "url": {
+          "examples": [
+            "https://example.jp"
+          ],
+          "format": "uri",
+          "title": "監視対象URL(外形監視)",
+          "type": "string"
+        },
+        "warning": {
+          "examples": [
+            10
+          ],
+          "title": "Warning条件閾値(ホスト・サービス・式)",
+          "type": "integer"
+        },
+        "warningSensitivity": {
+          "enum": [
+            "sensitive",
+            "normal",
+            "insensitive"
+          ],
+          "title": "センシティビティWarning条件(異常検知)",
+          "type": "string"
         }
-      ]
+      },
+      "required": [
+        "isMute",
+        "type",
+        "notificationInterval",
+        "name",
+        "id"
+      ],
+      "title": "監視ルール",
+      "type": "object"
+    },
+    "orgName": {
+      "examples": [
+        "MY_ORG"
+      ],
+      "title": "オーガニゼーション名",
+      "type": "string"
     },
     "user": {
       "$ref": "#/definitions/user"
-    },
-    "imageUrl": {
-      "$ref": "#/definitions/imageUrl"
     }
   },
-  "examples": [
-    {
-      "orgName": "MY_ORG",
-      "event": "monitorCreate",
-      "monitor": {
-        "critical": 50,
-        "isMute": false,
-        "excludeScopes": [],
-        "memo": "MY_MEMO",
-        "type": "host",
-        "notificationInterval": 60,
-        "operator": ">",
-        "duration": 3,
-        "maxCheckAttempts": 1,
-        "metric": "cpu%",
-        "name": "CPU %",
-        "warning": 10,
-        "scopes": [
-          "MY_SERVICE"
-        ],
-        "id": "MONITOR_ID"
-      },
-      "user": {
-        "id": "USER_ID",
-        "screenName": "MY_EMAIL_ADDRESS"
-      },
-      "imageUrl": null
-    }
-  ]
+  "required": [
+    "orgName",
+    "event",
+    "monitor",
+    "user"
+  ],
+  "title": "ルート",
+  "type": "object"
 }

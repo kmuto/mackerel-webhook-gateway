@@ -1,57 +1,125 @@
 {
+  "$id": "https://mackerel.io/json/alertgroup.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "default": {},
   "definitions": {
     "imageUrl": {
-      "type": [
-        "null",
-        "string"
-      ],
       "default": null,
-      "title": "グラフ画像URL",
       "examples": [
         null,
         "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
+      ],
+      "title": "グラフ画像URL",
+      "type": [
+        "null",
+        "string"
       ]
     },
     "memo": {
-      "type": "string",
-      "title": "メモ",
       "examples": [
         "MY_MEMO",
         "MY_MEMO\nMY_MEMO2\nMY_MEMO3"
-      ]
+      ],
+      "title": "メモ",
+      "type": "string"
     }
   },
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://mackerel.io/json/alertgroup.json",
-  "type": "object",
-  "default": {},
-  "title": "ルート",
-  "required": [
-    "orgName",
-    "event",
-    "alertGroup",
-    "alertGroupSetting"
+  "examples": [
+    {
+      "alertGroup": {
+        "closedAt": null,
+        "createdAt": 1693211901,
+        "id": "ALERTGROUP_ID",
+        "status": "WARNING",
+        "url": "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID"
+      },
+      "alertGroupSetting": {
+        "id": "ALERTGROUPSETTING_ID",
+        "memo": "MY_MEMO",
+        "name": "MY_ALERTGROUP",
+        "url": "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID"
+      },
+      "event": "alertGroup",
+      "imageUrl": null,
+      "orgName": "MY_ORG"
+    },
+    {
+      "alertGroup": {
+        "closedAt": 1693749741,
+        "createdAt": 1693749321,
+        "id": "ALERTGROUP_ID",
+        "status": "OK",
+        "url": "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID"
+      },
+      "alertGroupSetting": {
+        "id": "ALERTGROUPSETTING_ID",
+        "memo": "",
+        "name": "MY_ALERTGROUP",
+        "url": "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID"
+      },
+      "event": "alertGroup",
+      "imageUrl": null,
+      "orgName": "MY_ORG"
+    }
   ],
-  "additionalProperties": false,
   "properties": {
-    "orgName": {
-      "type": "string",
-      "title": "オーガニゼーション名",
-      "examples": [
-        "MY_ORG"
-      ]
-    },
-    "event": {
-      "type": "string",
-      "title": "イベントの種類",
-      "enum": [
-        "alertGroup"
-      ]
-    },
     "alertGroup": {
-      "type": "object",
       "default": {},
-      "title": "アラートグループ情報",
+      "examples": [
+        {
+          "closedAt": null,
+          "createdAt": 1693211901,
+          "id": "ALERTGROUP_ID",
+          "status": "WARNING",
+          "url": "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID"
+        }
+      ],
+      "properties": {
+        "closedAt": {
+          "default": null,
+          "examples": [
+            null
+          ],
+          "title": "アラート終了epoch時間",
+          "type": [
+            "null",
+            "integer"
+          ]
+        },
+        "createdAt": {
+          "examples": [
+            1693211901
+          ],
+          "title": "アラート発生epoch時間",
+          "type": "integer"
+        },
+        "id": {
+          "examples": [
+            "ALERTGROUP_ID"
+          ],
+          "title": "アラートグループID",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "WARNING",
+            "CRITICAL",
+            "OK",
+            "UNKNOWN"
+          ],
+          "title": "ステータス",
+          "type": "string"
+        },
+        "url": {
+          "examples": [
+            "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID"
+          ],
+          "format": "uri",
+          "title": "アラートグループURL",
+          "type": "string"
+        }
+      },
       "required": [
         "id",
         "url",
@@ -59,128 +127,78 @@
         "createdAt",
         "closedAt"
       ],
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "アラートグループID",
-          "examples": [
-            "ALERTGROUP_ID"
-          ]
-        },
-        "url": {
-          "type": "string",
-          "format": "uri",
-          "title": "アラートグループURL",
-          "examples": [
-            "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID"
-          ]
-        },
-        "status": {
-          "type": "string",
-          "title": "ステータス",
-          "enum": [
-            "WARNING",
-            "CRITICAL",
-            "OK",
-            "UNKNOWN"
-          ]
-        },
-        "createdAt": {
-          "type": "integer",
-          "title": "アラート発生epoch時間",
-          "examples": [
-            1693211901
-          ]
-        },
-        "closedAt": {
-          "type": [
-            "null",
-            "integer"
-          ],
-          "default": null,
-          "title": "アラート終了epoch時間",
-          "examples": [
-            null
-          ]
-        }
-      },
-      "examples": [
-        {
-          "id": "ALERTGROUP_ID",
-          "url": "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID",
-          "status": "WARNING",
-          "createdAt": 1693211901,
-          "closedAt": null
-        }
-      ]
+      "title": "アラートグループ情報",
+      "type": "object"
     },
     "alertGroupSetting": {
-      "type": "object",
       "default": {},
-      "title": "アラートグループ設定",
+      "examples": [
+        {
+          "id": "ALERTGROUPSETTING_ID",
+          "memo": "MY_MEMO",
+          "name": "MY_ALERTGROUP",
+          "url": "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID"
+        }
+      ],
+      "properties": {
+        "id": {
+          "examples": [
+            "ALERTGROUPSETTING_ID"
+          ],
+          "title": "アラートグループ設定ID",
+          "type": "string"
+        },
+        "memo": {
+          "$ref": "#/definitions/memo"
+        },
+        "name": {
+          "examples": [
+            "MY_ALERTGROUP"
+          ],
+          "title": "アラートグループ設定名",
+          "type": "string"
+        },
+        "url": {
+          "examples": [
+            "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID"
+          ],
+          "format": "uri",
+          "title": "アラートグループ設定URL",
+          "type": "string"
+        }
+      },
       "required": [
         "id",
         "url",
         "name"
       ],
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "アラートグループ設定ID",
-          "examples": [
-            "ALERTGROUPSETTING_ID"
-          ]
-        },
-        "url": {
-          "type": "string",
-          "format": "uri",
-          "title": "アラートグループ設定URL",
-          "examples": [
-            "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID"
-          ]
-        },
-        "name": {
-          "type": "string",
-          "title": "アラートグループ設定名",
-          "examples": [
-            "MY_ALERTGROUP"
-          ]
-        },
-        "memo": {
-          "$ref": "#/definitions/memo"
-        }
-      },
-      "examples": [
-        {
-          "id": "ALERTGROUPSETTING_ID",
-          "url": "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID",
-          "name": "MY_ALERTGROUP",
-          "memo": "MY_MEMO"
-        }
-      ]
+      "title": "アラートグループ設定",
+      "type": "object"
+    },
+    "event": {
+      "enum": [
+        "alertGroup"
+      ],
+      "title": "イベントの種類",
+      "type": "string"
     },
     "imageUrl": {
       "$ref": "#/definitions/imageUrl"
+    },
+    "orgName": {
+      "examples": [
+        "MY_ORG"
+      ],
+      "title": "オーガニゼーション名",
+      "type": "string"
     }
   },
-  "examples": [
-    {
-      "orgName": "MY_ORG",
-      "event": "alertGroup",
-      "alertGroup": {
-        "id": "ALERTGROUP_ID",
-        "url": "https://mackerel.io/orgs/MY_ORG/alert-groups/ALERTGROUP_ID",
-        "status": "WARNING",
-        "createdAt": 1693211901,
-        "closedAt": null
-      },
-      "alertGroupSetting": {
-        "id": "ALERTGROUPSETTING_ID",
-        "url": "https://mackerel.io/orgs/MY_ORG/alert-group-settings/ALERTGROUPSETTING_ID",
-        "name": "MY_ALERTGROUP",
-        "memo": "MY_MEMO"
-      },
-      "imageUrl": null
-    }
-  ]
+  "required": [
+    "orgName",
+    "event",
+    "alertGroup",
+    "alertGroupSetting"
+  ],
+  "title": "ルート",
+  "type": "object"
 }

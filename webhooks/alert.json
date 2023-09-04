@@ -1,195 +1,78 @@
 {
+  "$id": "https://mackerel.io/json/alert.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "default": {},
   "definitions": {
-    "imageUrl": {
-      "type": [
-        "null",
-        "string"
-      ],
-      "default": null,
-      "title": "グラフ画像URL",
-      "examples": [
-        null,
-        "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
-      ]
-    },
-    "user": {
-      "type": [
-        "null",
-        "object"
-      ],
-      "default": null,
-      "title": "ユーザー情報",
+    "host": {
       "additionalProperties": false,
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "ユーザーID",
-          "examples": [
-            "USER_ID"
-          ]
-        },
-        "screenName": {
-          "type": "string",
-          "title": "表示名",
-          "examples": [
-            "MY_NAME",
-            "MY_EMAIL_ADDRESS"
-          ]
-        }
-      },
-      "examples": [
-        null
-      ]
-    },
-    "memo": {
-      "type": "string",
-      "title": "メモ",
-      "examples": [
-        "MY_MEMO",
-        "MY_MEMO\nMY_MEMO2\nMY_MEMO3"
-      ]
-    },
-    "roles": {
-      "type": "array",
-      "default": [],
-      "title": "ロール情報",
-      "items": {
-        "type": "object",
-        "title": "ロール詳細情報",
-        "required": [
-          "fullname",
-          "serviceName",
-          "roleName",
-          "serviceUrl",
-          "roleUrl"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "fullname": {
-            "type": "string",
-            "title": "サービスとロールの結合名",
-            "examples": [
-              "MY_SERVICE: MY_ROLE"
-            ]
-          },
-          "serviceName": {
-            "type": "string",
-            "title": "サービス名",
-            "examples": [
-              "MY_SERVICE"
-            ]
-          },
-          "roleName": {
-            "type": "string",
-            "title": "ロール名",
-            "examples": [
-              "MY_ROLE"
-            ]
-          },
-          "serviceUrl": {
-            "type": "string",
-            "title": "サービスURL",
-            "format": "uri",
-            "examples": [
-              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
-            ]
-          },
-          "roleUrl": {
-            "type": "string",
-            "title": "ロールURL",
-            "format": "uri",
-            "examples": [
-              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
-            ]
-          }
-        },
-        "examples": [
-          {
-            "fullname": "MY_SERVICE: MY_ROLE",
-            "serviceName": "MY_SERVICE",
-            "roleName": "MY_ROLE",
-            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
-            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
-          }
-        ]
-      },
-      "examples": [
-        [
-          {
-            "fullname": "MY_SERVICE: MY_ROLE",
-            "serviceName": "MY_SERVICE",
-            "roleName": "MY_ROLE",
-            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
-            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
-          }
-        ]
-      ]
-    },
-    "service": {
-      "type": "object",
-      "default": {},
-      "title": "サービス情報",
-      "required": [
-        "name",
-        "id",
-        "orgId",
-        "roles"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "サービス名",
-          "examples": [
-            "MY_SERVICE"
-          ]
-        },
-        "memo": {
-          "type": "string",
-          "title": "メモ",
-          "examples": [
-            ""
-          ]
-        },
-        "id": {
-          "type": "string",
-          "title": "サービスID",
-          "examples": [
-            "SERVICE_ID"
-          ]
-        },
-        "orgId": {
-          "type": "string",
-          "title": "オーガニゼーションID",
-          "examples": [
-            "ORG_ID"
-          ]
-        },
-        "roles": {
-          "$ref": "#/definitions/roles"
-        }
-      },
       "examples": [
         {
-          "name": "MY_SERVICE",
-          "memo": "",
-          "id": "SERVICE_ID",
-          "orgId": "ORG_ID",
+          "id": "HOST_ID",
+          "isRetired": false,
+          "memo": "MY_MEMO",
+          "name": "MY_HOST",
           "roles": [
             {
               "fullname": "MY_SERVICE: MY_ROLE",
-              "serviceName": "MY_SERVICE",
               "roleName": "MY_ROLE",
-              "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
-              "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
+              "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+              "serviceName": "MY_SERVICE",
+              "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
             }
-          ]
+          ],
+          "status": "working",
+          "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
         }
-      ]
-    },
-    "host": {
-      "type": "object",
-      "title": "ホスト情報",
+      ],
+      "properties": {
+        "id": {
+          "examples": [
+            "HOST_ID"
+          ],
+          "title": "ホストID",
+          "type": "string"
+        },
+        "isRetired": {
+          "default": false,
+          "examples": [
+            false
+          ],
+          "title": "退役済みか",
+          "type": "boolean"
+        },
+        "memo": {
+          "$ref": "#/definitions/memo"
+        },
+        "name": {
+          "examples": [
+            "MY_HOST"
+          ],
+          "title": "ホスト名",
+          "type": "string"
+        },
+        "roles": {
+          "$ref": "#/definitions/roles"
+        },
+        "status": {
+          "enum": [
+            "working",
+            "standby",
+            "maintenance",
+            "poweroff"
+          ],
+          "title": "ステータス",
+          "type": "string"
+        },
+        "url": {
+          "examples": [
+            "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+          ],
+          "format": "uri",
+          "title": "ホストURL",
+          "type": "string"
+        }
+      },
       "required": [
         "name",
         "isRetired",
@@ -198,106 +81,673 @@
         "status",
         "roles"
       ],
+      "title": "ホスト情報",
+      "type": "object"
+    },
+    "imageUrl": {
+      "default": null,
+      "examples": [
+        null,
+        "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
+      ],
+      "title": "グラフ画像URL",
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "memo": {
+      "examples": [
+        "MY_MEMO",
+        "MY_MEMO\nMY_MEMO2\nMY_MEMO3"
+      ],
+      "title": "メモ",
+      "type": "string"
+    },
+    "roles": {
+      "default": [],
+      "examples": [
+        [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ]
+      ],
+      "items": {
+        "additionalProperties": false,
+        "examples": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "properties": {
+          "fullname": {
+            "examples": [
+              "MY_SERVICE: MY_ROLE"
+            ],
+            "title": "サービスとロールの結合名",
+            "type": "string"
+          },
+          "roleName": {
+            "examples": [
+              "MY_ROLE"
+            ],
+            "title": "ロール名",
+            "type": "string"
+          },
+          "roleUrl": {
+            "examples": [
+              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
+            ],
+            "format": "uri",
+            "title": "ロールURL",
+            "type": "string"
+          },
+          "serviceName": {
+            "examples": [
+              "MY_SERVICE"
+            ],
+            "title": "サービス名",
+            "type": "string"
+          },
+          "serviceUrl": {
+            "examples": [
+              "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+            ],
+            "format": "uri",
+            "title": "サービスURL",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fullname",
+          "serviceName",
+          "roleName",
+          "serviceUrl",
+          "roleUrl"
+        ],
+        "title": "ロール詳細情報",
+        "type": "object"
+      },
+      "title": "ロール情報",
+      "type": "array"
+    },
+    "service": {
       "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "ホスト名",
-          "examples": [
-            "MY_HOST"
+      "default": {},
+      "examples": [
+        {
+          "id": "SERVICE_ID",
+          "memo": "",
+          "name": "MY_SERVICE",
+          "orgId": "ORG_ID",
+          "roles": [
+            {
+              "fullname": "MY_SERVICE: MY_ROLE",
+              "roleName": "MY_ROLE",
+              "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+              "serviceName": "MY_SERVICE",
+              "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+            }
           ]
+        }
+      ],
+      "properties": {
+        "id": {
+          "examples": [
+            "SERVICE_ID"
+          ],
+          "title": "サービスID",
+          "type": "string"
         },
         "memo": {
-          "$ref": "#/definitions/memo"
-        },
-        "isRetired": {
-          "type": "boolean",
-          "default": false,
-          "title": "退役済みか",
           "examples": [
-            false
-          ]
+            ""
+          ],
+          "title": "メモ",
+          "type": "string"
         },
-        "id": {
-          "type": "string",
-          "title": "ホストID",
+        "name": {
           "examples": [
-            "HOST_ID"
-          ]
+            "MY_SERVICE"
+          ],
+          "title": "サービス名",
+          "type": "string"
         },
-        "url": {
-          "type": "string",
-          "title": "ホストURL",
-          "format": "uri",
+        "orgId": {
           "examples": [
-            "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
-          ]
-        },
-        "status": {
-          "type": "string",
-          "title": "ステータス",
-          "enum": [
-            "working",
-            "standby",
-            "maintenance",
-            "poweroff"
-          ]
+            "ORG_ID"
+          ],
+          "title": "オーガニゼーションID",
+          "type": "string"
         },
         "roles": {
           "$ref": "#/definitions/roles"
         }
       },
+      "required": [
+        "name",
+        "id",
+        "orgId",
+        "roles"
+      ],
+      "title": "サービス情報",
+      "type": "object"
+    },
+    "user": {
+      "additionalProperties": false,
+      "default": null,
       "examples": [
-        {
-          "name": "MY_HOST",
-          "memo": "MY_MEMO",
-          "isRetired": false,
-          "id": "HOST_ID",
-          "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID",
-          "status": "working",
-          "roles": [
-            {
-              "fullname": "MY_SERVICE: MY_ROLE",
-              "serviceName": "MY_SERVICE",
-              "roleName": "MY_ROLE",
-              "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
-              "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
-            }
-          ]
+        null
+      ],
+      "properties": {
+        "id": {
+          "examples": [
+            "USER_ID"
+          ],
+          "title": "ユーザーID",
+          "type": "string"
+        },
+        "screenName": {
+          "examples": [
+            "MY_NAME",
+            "MY_EMAIL_ADDRESS"
+          ],
+          "title": "表示名",
+          "type": "string"
         }
+      },
+      "title": "ユーザー情報",
+      "type": [
+        "null",
+        "object"
       ]
     }
   },
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://mackerel.io/json/alert.json",
-  "type": "object",
-  "default": {},
-  "title": "ルート",
-  "required": [
-    "orgName",
-    "event",
-    "alert",
-    "user"
+  "examples": [
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1692628521296,
+        "criticalThreshold": 10,
+        "duration": 3,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "metricLabel": "cpu%",
+        "metricValue": 6,
+        "monitorName": "CPU %",
+        "monitorOperator": ">",
+        "openedAt": 1692628521,
+        "status": "warning",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+        "warningThreshold": 5
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "MY_MEMO",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png",
+      "memo": "MY_MEMO\nMY_MEMO2",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693746245295,
+        "criticalThreshold": 1,
+        "duration": 1,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "metricLabel": "scale(host(HOST_ID, loadavg1), 1)",
+        "metricValue": 0.02,
+        "monitorName": "MY_MONITOR-EXPRESSION",
+        "monitorOperator": ">",
+        "openedAt": 1693746245,
+        "status": "warning",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+        "warningThreshold": 0
+      },
+      "event": "alert",
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "MEMO1\nMEMO2",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": 1693746690,
+        "createdAt": 1693746245295,
+        "criticalThreshold": 1,
+        "duration": 1,
+        "id": "ALERT_ID",
+        "isOpen": false,
+        "metricLabel": "scale(host(HOST_ID, loadavg1), 1)",
+        "monitorName": "MY_MONITOR-EXPRESSION",
+        "monitorOperator": ">",
+        "openedAt": 1693746245,
+        "status": "ok",
+        "trigger": "manual close",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+        "warningThreshold": 0
+      },
+      "event": "alert",
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "MEMO1\nMEMO2",
+      "orgName": "MY_ORG",
+      "user": {
+        "id": "USER_ID",
+        "screenName": "MY_EMAIL_ADDRESS"
+      }
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693212768244,
+        "criticalThreshold": 2,
+        "duration": 1,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "metricLabel": "MY_METRIC",
+        "metricValue": 1693212649,
+        "monitorName": "MY_SERVICE - MY_METRIC",
+        "monitorOperator": ">",
+        "openedAt": 1693212768,
+        "status": "critical",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+        "warningThreshold": 1
+      },
+      "event": "alert",
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "MEMO1\nMEMO2",
+      "orgName": "MY_ORG",
+      "service": {
+        "id": "SERVICE_ID",
+        "memo": "",
+        "name": "MY_SERVICE",
+        "orgId": "ORG_ID",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          },
+          {
+            "fullname": "MY_SERVICE: MY_ROLE2",
+            "roleName": "MY_ROLE2",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE2",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ]
+      },
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": 1693212848,
+        "createdAt": 1693212768244,
+        "criticalThreshold": 2,
+        "duration": 1,
+        "id": "ALERT_ID",
+        "isOpen": false,
+        "metricLabel": "MY_METRIC",
+        "metricValue": 1,
+        "monitorName": "MY_SERVICE - MY_METRIC",
+        "monitorOperator": ">",
+        "openedAt": 1693212768,
+        "status": "ok",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+        "warningThreshold": 1
+      },
+      "event": "alert",
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "MEMO1\nMEMO2",
+      "orgName": "MY_ORG",
+      "service": {
+        "id": "SERVICE_ID",
+        "memo": "",
+        "name": "MY_SERVICE",
+        "orgId": "ORG_ID",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ]
+      },
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693025262359,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "monitorName": "MY_MONITOR_CONNECTIVITY",
+        "openedAt": 1693025262,
+        "status": "warning",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693211911720,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "monitorName": "MY_MONITOR_CHECK",
+        "openedAt": 1693211911,
+        "status": "warning",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": null,
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": 1693212151,
+        "createdAt": 1693211911720,
+        "id": "ALERT_ID",
+        "isOpen": false,
+        "monitorName": "MY_MONITOR_CHECK",
+        "openedAt": 1693211911,
+        "status": "ok",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": null,
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1692581954360,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "monitorName": "MY_MONITOR_EXTERNAL",
+        "openedAt": 1692581954,
+        "status": "critical",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "imageUrl": null,
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693026196886,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "monitorName": "MY_MONITOR_EXTERNAL",
+        "openedAt": 1693026196,
+        "status": "critical",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "",
+      "orgName": "MY_ORG",
+      "service": {
+        "id": "SERVICE_ID",
+        "memo": "",
+        "name": "MY_SERVICE",
+        "orgId": "ORG_ID",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ]
+      },
+      "user": null
+    }
   ],
-  "additionalProperties": false,
   "properties": {
-    "orgName": {
-      "type": "string",
-      "title": "オーガニゼーション名",
-      "examples": [
-        "MY_ORG"
-      ]
-    },
-    "event": {
-      "type": "string",
-      "title": "イベントの種類",
-      "enum": [
-        "alert"
-      ]
-    },
     "alert": {
-      "type": "object",
-      "title": "アラート",
+      "additionalProperties": false,
+      "examples": [
+        {
+          "closedAt": null,
+          "createdAt": 1692628521296,
+          "criticalThreshold": 10,
+          "duration": 3,
+          "id": "ALERT_ID",
+          "isOpen": true,
+          "metricLabel": "cpu%",
+          "metricValue": 6,
+          "monitorName": "CPU %",
+          "monitorOperator": ">",
+          "openedAt": 1692628521,
+          "status": "warning",
+          "trigger": "monitor",
+          "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
+          "warningThreshold": 5
+        }
+      ],
+      "properties": {
+        "closedAt": {
+          "default": null,
+          "examples": [
+            null,
+            1692628521
+          ],
+          "title": "アラート終了epoch時間",
+          "type": [
+            "null",
+            "integer"
+          ]
+        },
+        "createdAt": {
+          "examples": [
+            1692628521296
+          ],
+          "title": "アラート発生epoch時間ms(廃止予定)",
+          "type": "integer"
+        },
+        "criticalThreshold": {
+          "examples": [
+            10
+          ],
+          "title": "Critical条件閾値",
+          "type": "integer"
+        },
+        "duration": {
+          "examples": [
+            3
+          ],
+          "title": "平均値監視",
+          "type": "integer"
+        },
+        "id": {
+          "examples": [
+            "ALERT_ID"
+          ],
+          "title": "アラートID",
+          "type": "string"
+        },
+        "isOpen": {
+          "default": false,
+          "examples": [
+            true
+          ],
+          "title": "アラートがオープンのままか",
+          "type": "boolean"
+        },
+        "metricLabel": {
+          "examples": [
+            "cpu%",
+            "custom.linux.users.users"
+          ],
+          "title": "メトリック名",
+          "type": "string"
+        },
+        "metricValue": {
+          "examples": [
+            1
+          ],
+          "title": "メトリック値",
+          "type": "integer"
+        },
+        "monitorName": {
+          "examples": [
+            "CPU %"
+          ],
+          "title": "監視ルール名",
+          "type": "string"
+        },
+        "monitorOperator": {
+          "enum": [
+            ">",
+            "<"
+          ],
+          "title": "演算子",
+          "type": "string"
+        },
+        "openedAt": {
+          "examples": [
+            1692628521
+          ],
+          "title": "アラート発生epoch時間",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "warning",
+            "critical",
+            "ok",
+            "unknown"
+          ],
+          "title": "ステータス",
+          "type": "string"
+        },
+        "trigger": {
+          "enum": [
+            "monitor",
+            "manual close"
+          ],
+          "title": "トリガー",
+          "type": "string"
+        },
+        "url": {
+          "examples": [
+            "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+          ],
+          "format": "uri",
+          "title": "アラートURL",
+          "type": "string"
+        },
+        "warningThreshold": {
+          "examples": [
+            5
+          ],
+          "title": "Warning条件閾値",
+          "type": "integer"
+        }
+      },
       "required": [
         "id",
         "url",
@@ -309,203 +759,45 @@
         "trigger",
         "monitorName"
       ],
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "アラートID",
-          "examples": [
-            "ALERT_ID"
-          ]
-        },
-        "url": {
-          "type": "string",
-          "title": "アラートURL",
-          "format": "uri",
-          "examples": [
-            "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
-          ]
-        },
-        "openedAt": {
-          "type": "integer",
-          "title": "アラート発生epoch時間",
-          "examples": [
-            1692628521
-          ]
-        },
-        "closedAt": {
-          "type": [
-            "null",
-            "integer"
-          ],
-          "default": null,
-          "title": "アラート終了epoch時間",
-          "examples": [
-            null,
-            1692628521
-          ]
-        },
-        "createdAt": {
-          "type": "integer",
-          "title": "アラート発生epoch時間ms(廃止予定)",
-          "examples": [
-            1692628521296
-          ]
-        },
-        "status": {
-          "type": "string",
-          "title": "ステータス",
-          "enum": [
-            "warning",
-            "critical",
-            "ok",
-            "unknown"
-          ]
-        },
-        "isOpen": {
-          "type": "boolean",
-          "default": false,
-          "title": "アラートがオープンのままか",
-          "examples": [
-            true
-          ]
-        },
-        "trigger": {
-          "type": "string",
-          "title": "トリガー",
-          "enum": [
-            "monitor", "manual close"
-          ]
-        },
-        "monitorName": {
-          "type": "string",
-          "title": "監視ルール名",
-          "examples": [
-            "CPU %"
-          ]
-        },
-        "metricLabel": {
-          "type": "string",
-          "title": "メトリック名",
-          "examples": [
-            "cpu%",
-            "custom.linux.users.users"
-          ]
-        },
-        "metricValue": {
-          "type": "integer",
-          "title": "メトリック値",
-          "examples": [
-            1
-          ]
-        },
-        "criticalThreshold": {
-          "type": "integer",
-          "title": "Critical条件閾値",
-          "examples": [
-            10
-          ]
-        },
-        "warningThreshold": {
-          "type": "integer",
-          "title": "Warning条件閾値",
-          "examples": [
-            5
-          ]
-        },
-        "monitorOperator": {
-          "type": "string",
-          "title": "演算子",
-          "enum": [
-            ">",
-            "<"
-          ]
-        },
-        "duration": {
-          "type": "integer",
-          "title": "平均値監視",
-          "examples": [
-            3
-          ]
-        }
-      },
-      "examples": [
-        {
-          "id": "ALERT_ID",
-          "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
-          "openedAt": 1692628521,
-          "closedAt": null,
-          "createdAt": 1692628521296,
-          "status": "warning",
-          "isOpen": true,
-          "trigger": "monitor",
-          "monitorName": "CPU %",
-          "metricLabel": "cpu%",
-          "metricValue": 6,
-          "criticalThreshold": 10,
-          "warningThreshold": 5,
-          "monitorOperator": ">",
-          "duration": 3
-        }
-      ]
+      "title": "アラート",
+      "type": "object"
     },
-    "memo": {
-      "$ref": "#/definitions/memo"
-    },
-    "user": {
-      "$ref": "#/definitions/user"
+    "event": {
+      "enum": [
+        "alert"
+      ],
+      "title": "イベントの種類",
+      "type": "string"
     },
     "host": {
       "$ref": "#/definitions/host"
     },
+    "imageUrl": {
+      "$ref": "#/definitions/imageUrl"
+    },
+    "memo": {
+      "$ref": "#/definitions/memo"
+    },
+    "orgName": {
+      "examples": [
+        "MY_ORG"
+      ],
+      "title": "オーガニゼーション名",
+      "type": "string"
+    },
     "service": {
       "$ref": "#/definitions/service"
     },
-    "imageUrl": {
-      "$ref": "#/definitions/imageUrl"
+    "user": {
+      "$ref": "#/definitions/user"
     }
   },
-  "examples": [
-    {
-      "orgName": "MY_ORG",
-      "event": "alert",
-      "alert": {
-        "id": "ALERT_ID",
-        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID",
-        "openedAt": 1692628521,
-        "closedAt": null,
-        "createdAt": 1692628521296,
-        "status": "warning",
-        "isOpen": true,
-        "trigger": "monitor",
-        "monitorName": "CPU %",
-        "metricLabel": "cpu%",
-        "metricValue": 6,
-        "criticalThreshold": 10,
-        "warningThreshold": 5,
-        "monitorOperator": ">",
-        "duration": 3
-      },
-      "memo": "MY_MEMO\nMY_MEMO2",
-      "user": null,
-      "host": {
-        "name": "MY_HOST",
-        "memo": "MY_MEMO",
-        "isRetired": false,
-        "id": "HOST_ID",
-        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID",
-        "status": "working",
-        "roles": [
-          {
-            "fullname": "MY_SERVICE: MY_ROLE",
-            "serviceName": "MY_SERVICE",
-            "roleName": "MY_ROLE",
-            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE",
-            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE"
-          }
-        ]
-      },
-      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png"
-    }
-  ]
+  "required": [
+    "orgName",
+    "event",
+    "alert",
+    "user"
+  ],
+  "title": "ルート",
+  "type": "object"
 }
