@@ -604,6 +604,90 @@
         ]
       },
       "user": null
+    },
+    {
+      "alert": {
+        "closedAt": null,
+        "createdAt": 1693918067845,
+        "id": "ALERT_ID",
+        "isOpen": true,
+        "monitorName": "MY_MONITOR_ANORMALY",
+        "openedAt": 1693918067,
+        "status": "critical",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_HOST",
+            "roleName": "MY_HOST",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_HOST",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          },
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
+    },
+    {
+      "alert": {
+        "closedAt": 1693918187,
+        "createdAt": 1693918067845,
+        "id": "ALERT_ID",
+        "isOpen": false,
+        "monitorName": "MY_MONITOR_ANORMALY",
+        "openedAt": 1693918067,
+        "status": "ok",
+        "trigger": "monitor",
+        "url": "https://mackerel.io/orgs/MY_ORG/alerts/ALERT_ID"
+      },
+      "event": "alert",
+      "host": {
+        "id": "HOST_ID",
+        "isRetired": false,
+        "memo": "",
+        "name": "MY_HOST",
+        "roles": [
+          {
+            "fullname": "MY_SERVICE: MY_HOST",
+            "roleName": "MY_HOST",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_HOST",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          },
+          {
+            "fullname": "MY_SERVICE: MY_ROLE",
+            "roleName": "MY_ROLE",
+            "roleUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE#role=MY_ROLE",
+            "serviceName": "MY_SERVICE",
+            "serviceUrl": "https://mackerel.io/orgs/MY_ORG/services/MY_SERVICE"
+          }
+        ],
+        "status": "working",
+        "url": "https://mackerel.io/orgs/MY_ORG/hosts/HOST_ID"
+      },
+      "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
+      "memo": "",
+      "orgName": "MY_ORG",
+      "user": null
     }
   ],
   "properties": {
