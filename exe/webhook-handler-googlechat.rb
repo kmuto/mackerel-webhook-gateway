@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Mackerel Webhook Gateway Handler on Sinatra
+# Mackerel Webhook Gateway Handler for Google Chat on Sinatra
 #
 # Copyright 2023 Kenshi Muto <kmuto@kmuto.jp>
 require 'dotenv'
