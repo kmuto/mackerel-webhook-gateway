@@ -1,5 +1,7 @@
 # Mackerel Webhook Gateway
 
+![](./mackerel-webhook-gateway.png)
+
 Copyright 2023 Kenshi Muto
 
 監視サービス[Mackerel](https://ja.mackerel.io)のWebhookを受け取り、ほかの形式のWebhookに引き渡すゲートウェイのライブラリです。
