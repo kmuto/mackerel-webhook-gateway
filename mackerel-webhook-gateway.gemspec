@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency('dotenv')
   spec.add_dependency('faraday')
-  spec.add_dependency('sinatra')
 
   spec.add_development_dependency('rake', '~> 12.0')
   spec.add_development_dependency('rubocop', '~> 1.50')

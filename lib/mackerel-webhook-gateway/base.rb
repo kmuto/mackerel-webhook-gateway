@@ -225,7 +225,6 @@ module MackerelWebhookGateway
     end
 
     def run(h)
-      h[:mackerel_url] = @mackerel_url
       json = handle_by_event(h)
       post(json) if json
     end

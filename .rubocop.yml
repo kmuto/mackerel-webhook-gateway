@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - samples/**/*
+    - vendor/**/*
   DisplayCopNames: true
   NewCops: enable
   TargetRubyVersion: 2.7

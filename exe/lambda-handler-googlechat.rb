@@ -12,10 +12,16 @@ DECRYPTED = Aws::KMS::Client.new.decrypt({
                                          }).plaintext
 ENV['GOOGLECHAT_WEBHOOK'] = DECRYPTED
 
-def lambda_handler(event:, _context:)
+# rubocop:disable Lint/UnusedMethodArgument
+def lambda_handler(event:, context:)
   m = MackerelWebhookGateway::GoogleChat.new
-  h = m.parse(JSON.generate(event.inspect))
-  m.run(h) if h
+  h = m.parse(JSON.generate(event))
+  if h[:body]
+    m.run(m.parse(h[:body]))
+  elsif h[:event]
+    m.run(h)
+  end
 
   { statusCode: 200, body: JSON.generate('received on Lambda') }
 end
+# rubocop:enable Lint/UnusedMethodArgument
