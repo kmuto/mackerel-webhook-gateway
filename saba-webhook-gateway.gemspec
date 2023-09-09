@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'saba-webhook-gateway'
-  spec.version       = '1.0.0'
+  spec.version       = '1.1.0'
   spec.authors       = ['Kenshi Muto']
   spec.email         = ['kmuto@kmuto.jp']
   spec.license       = 'MIT License'
