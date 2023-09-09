@@ -2,9 +2,9 @@
 
 ![](./saba-webhook-gateway.png)
 
-Copyright 2023 Kenshi Muto
+[![Gem Version](https://badge.fury.io/rb/saba-webhook-gateway.svg)](https://rubygems.org/gems/saba-webhook-gateway)
 
-監視サービス[Mackerel](https://ja.mackerel.io)のWebhookを受け取り、ほかの形式のWebhookに引き渡すゲートウェイのライブラリです。
+Saba Webhook Gatewayは、監視サービス[Mackerel](https://ja.mackerel.io)のWebhookを受け取り、ほかの形式のWebhookに変換して引き渡すゲートウェイのライブラリです。
 
 以下のMackerelのWebhook通知に対応します。
 
