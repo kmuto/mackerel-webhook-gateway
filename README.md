@@ -1,6 +1,6 @@
-# Mackerel Webhook Gateway
+# Saba Webhook Gateway
 
-![](./mackerel-webhook-gateway.png)
+![](./saba-webhook-gateway.png)
 
 Copyright 2023 Kenshi Muto
 
@@ -52,7 +52,7 @@ Mackerelの通知チャンネルの追加で「Webhook」を選び、URLにイ�
 
 AWS LambdaのRubyランタイムと関数URLを使ってサーバーレスで実行することもできます。
 
-まず、アップロードするmackerel-webhook-gateway-googlechat.zipファイルを作成します。
+まず、アップロードするsaba-webhook-gateway-googlechat.zipファイルを作成します。
 
 ```
 $ ./make-lambda-zip.sh
@@ -72,7 +72,7 @@ AWSでLambdaを用意します。
 - 呼び出しモード: BUFFERED（デフォルト）
 - オリジン間リソース共有（CORS）を設定: 任意
 
-「コード」タブの「コードソース」の「アップロード元」からmackerel-webhook-gateway-googlechat.zipファイルをアップロードします。
+「コード」タブの「コードソース」の「アップロード元」からsaba-webhook-gateway-googlechat.zipファイルをアップロードします。
 
 下にスクロールして「ランタイム設定」に進み、「編集」をクリックしてハンドラを以下のとおり変更します。
 
@@ -90,12 +90,12 @@ exe/lambda-handler-googlechat.lambda_handler
 
 ### カスタマイズ
 
-メッセージを変更したいときには、`lib/mackerel-webhook-gateway/googlechat.rb`を直接書き換える方法もありますが、一部だけであれば`customize.rb`でメソッドをオーバーライドするのが簡単です。
+メッセージを変更したいときには、`lib/saba-webhook-gateway/googlechat.rb`を直接書き換える方法もありますが、一部だけであればメソッドをオーバーライドするのが簡単です。
 
 ```
-# Mackerel Webhook Gateway Override
+# Saba Webhook Gateway Override
 module GoogleChatOverride
-  # MackerelWebhookGateway::GoogleChat の一部のメソッドの挙動(カード出力など)を変えたいときにはここでメソッドを上書きする
+  # SabaWebhookGateway::GoogleChat の一部のメソッドの挙動(カード出力など)を変えたいときにはここでメソッドを上書きする
   # sampleメソッドを上書きする例
   def sample(h)
     header = { title: '通知のテスト' }
@@ -105,7 +105,7 @@ module GoogleChatOverride
   end
 end
 
-module MackerelWebhookGateway
+module SabaWebhookGateway
   class GoogleChat
     prepend GoogleChatOverride
   end

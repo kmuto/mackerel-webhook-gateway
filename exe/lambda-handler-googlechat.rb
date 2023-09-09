@@ -1,5 +1,4 @@
-require_relative '../lib/mackerel-webhook-gateway'
-require_relative '../customize'
+require_relative '../lib/saba-webhook-gateway'
 require 'aws-sdk-kms'
 require 'base64'
 
@@ -14,7 +13,7 @@ ENV['GOOGLECHAT_WEBHOOK'] = DECRYPTED
 
 # rubocop:disable Lint/UnusedMethodArgument
 def lambda_handler(event:, context:)
-  m = MackerelWebhookGateway::GoogleChat.new
+  m = SabaWebhookGateway::GoogleChat.new
   h = m.parse(JSON.generate(event))
   if h[:body]
     m.run(m.parse(h[:body]))
