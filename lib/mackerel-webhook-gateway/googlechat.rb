@@ -1,4 +1,4 @@
-# Mackerel Webhook Gateway Google Chat
+# Mackerel Webhook Gateway for Google Chat
 # Copyright 2023 Kenshi Muto <kmuto@kmuto.jp>
 require_relative 'base'
 require 'faraday'
