@@ -5,7 +5,11 @@
 require 'dotenv'
 require 'sinatra'
 
-require_relative '../lib/saba-webhook-gateway'
+require 'pathname'
+bindir = Pathname.new(__FILE__).realpath.dirname
+$LOAD_PATH.unshift((bindir + '../lib').realpath)
+
+require 'saba-webhook-gateway'
 
 Dotenv.load
 @bind = ENV['SERVER_BIND'] || '0.0.0.0'
