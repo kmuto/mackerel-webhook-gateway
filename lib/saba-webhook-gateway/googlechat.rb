@@ -5,6 +5,11 @@ require 'faraday'
 
 module SabaWebhookGateway
   class GoogleChat < Base
+    # Make Google Chat Card style JSON.
+    #
+    # @param [Hash] :header Header area Hash object.
+    # @param [Hash] :sections Section area Hash object.
+    # @return [String]
     def googlechat_card(header, sections)
       j = { cards: { header: header, sections: sections } }
       JSON.generate(j)
