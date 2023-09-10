@@ -52,6 +52,8 @@ Mackerelの通知チャンネルの追加で「Webhook」を選び、URLにイ�
 
 AWS LambdaのRubyランタイムと関数URLを使ってサーバーレスで実行することもできます。
 
+※ただし、関数URLでは送信元制限などの制限設定が現時点でできません。より安全にするには関数URLではなく、API Gatewayを通す必要があります。
+
 まず、アップロードするsaba-webhook-gateway-googlechat.zipファイルを作成します。
 
 ```
