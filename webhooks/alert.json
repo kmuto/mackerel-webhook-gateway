@@ -104,6 +104,13 @@
       "title": "メモ",
       "type": "string"
     },
+    "message": {
+      "examples": [
+        "CPU % 5 > 2"
+      ],
+      "title": "アラートメッセージ",
+      "type": "string"
+    },
     "roles": {
       "default": [],
       "examples": [
@@ -242,6 +249,19 @@
       "title": "サービス情報",
       "type": "object"
     },
+    "type": {
+      "enum": [
+        "connectivity",
+        "host",
+        "service",
+        "external",
+        "check",
+        "expression",
+        "anomalyDetection"
+      ],
+      "title": "監視ルールの種類",
+      "type": "string"
+    },
     "user": {
       "additionalProperties": false,
       "default": null,
@@ -311,7 +331,9 @@
       },
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH_URL.png",
       "memo": "MY_MEMO\nMY_MEMO2",
+      "message": "CPU % 6 > 5",
       "orgName": "MY_ORG",
+      "type": "host",
       "user": null
     },
     {
@@ -335,7 +357,9 @@
       "event": "alert",
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "MEMO1\nMEMO2",
+      "message": "MY_MONITOR-EXPRESSION 0.02 > 0",
       "orgName": "MY_ORG",
+      "type": "expression",
       "user": null
     },
     {
@@ -358,7 +382,9 @@
       "event": "alert",
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "MEMO1\nMEMO2",
+      "message": "MY_MONITOR-EXPRESSION 0.02",
       "orgName": "MY_ORG",
+      "type": "expression",
       "user": {
         "id": "USER_ID",
         "screenName": "MY_EMAIL_ADDRESS"
@@ -385,7 +411,9 @@
       "event": "alert",
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "MEMO1\nMEMO2",
+      "message": "MY_METRIC 1693212649 > 2",
       "orgName": "MY_ORG",
+      "type": "service",
       "service": {
         "id": "SERVICE_ID",
         "memo": "",
@@ -431,7 +459,9 @@
       "event": "alert",
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "MEMO1\nMEMO2",
+      "message": "MY_METRIC 1",
       "orgName": "MY_ORG",
+      "type": "service",
       "service": {
         "id": "SERVICE_ID",
         "memo": "",
@@ -481,7 +511,9 @@
       },
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "",
+      "message": "unreachable",
       "orgName": "MY_ORG",
+      "type": "connectivity",
       "user": null
     },
     {
@@ -516,7 +548,9 @@
       },
       "imageUrl": null,
       "memo": "",
+      "message": "log - LOG CRITICAL: 1 warnings, 1 criticals for pattern /error/.",
       "orgName": "MY_ORG",
+      "type": "check",
       "user": null
     },
     {
@@ -551,7 +585,9 @@
       },
       "imageUrl": null,
       "memo": "",
+      "message": "log - LOG OK: 0 warnings, 0 criticals for pattern /error/.",
       "orgName": "MY_ORG",
+      "type": "check",
       "user": null
     },
     {
@@ -569,7 +605,9 @@
       "event": "alert",
       "imageUrl": null,
       "memo": "",
+      "message": "HTTP request failed - status is 500",
       "orgName": "MY_ORG",
+      "type": "external",
       "user": null
     },
     {
@@ -587,7 +625,9 @@
       "event": "alert",
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "",
+      "message": "HTTP request failed - status is 500",
       "orgName": "MY_ORG",
+      "type": "external",
       "service": {
         "id": "SERVICE_ID",
         "memo": "",
@@ -644,7 +684,9 @@
       },
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "",
+      "message": "MY_MONITOR_ANORMALY cpu.iowait.percentage",
       "orgName": "MY_ORG",
+      "type": "anomalyDetection",
       "user": null
     },
     {
@@ -686,7 +728,9 @@
       },
       "imageUrl": "https://mackerel.io/embed/public/alert/RANDOM_GRAPH.png",
       "memo": "",
+      "message": "MY_MONITOR_ANORMALY cpu.iowait.percentage",
       "orgName": "MY_ORG",
+      "type": "anomalyDetection",
       "user": null
     }
   ],
@@ -862,12 +906,18 @@
     "memo": {
       "$ref": "#/definitions/memo"
     },
+    "message": {
+      "$ref": "#/definitions/message"
+    },
     "orgName": {
       "examples": [
         "MY_ORG"
       ],
       "title": "オーガニゼーション名",
       "type": "string"
+    },
+    "type": {
+      "$ref": "#/definitions/type"
     },
     "service": {
       "$ref": "#/definitions/service"
